@@ -1,0 +1,41 @@
+<script lang="ts">
+    import Frame from './Frame.svelte';
+    import classNames from 'classnames';
+  
+    export let navClass: string = 'px-2 sm:px-4 py-2.5 w-full';
+    export let navDivClass: string = 'mx-auto flex flex-wrap justify-between items-center ';
+    export let fluid: boolean = false;
+    export let color:
+      | 'gray'
+      | 'red'
+      | 'yellow'
+      | 'green'
+      | 'indigo'
+      | 'default'
+      | 'purple'
+      | 'pink'
+      | 'blue'
+      | 'light'
+      | 'dark'
+      | 'dropdown'
+      | 'navbar'
+      | 'navbarUl'
+      | 'form'
+      | 'none' = 'navbar';
+  
+    let hidden = true;
+    let toggle = () => {
+      hidden = !hidden;
+    };
+
+    $: {
+        console.log(JSON.stringify($$slots, null, 2));
+    }
+
+  </script>
+  
+  <Frame tag="nav" {color} {...$$restProps} class={classNames(navClass, $$props.class)}>
+    <div class={classNames(navDivClass, (fluid && 'w-full') || 'container')}>
+      <slot {hidden} {toggle} />
+    </div>
+  </Frame>

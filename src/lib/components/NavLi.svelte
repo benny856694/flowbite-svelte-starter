@@ -17,11 +17,6 @@
       $$props.class
     );
 
-    $: child = JSON.stringify($$slots, null, 2)
-
-  $: {
-    console.log(`${child} active: ${active}`)
-  }
 
   </script>
 
