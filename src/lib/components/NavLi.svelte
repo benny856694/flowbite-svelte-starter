@@ -1,12 +1,14 @@
 <script lang="ts">
     import classNames from 'classnames';
-    import { getContext } from 'svelte';
+    import { afterUpdate, getContext } from 'svelte';
     import type { NavbarLiType } from './NavUl.svelte';
   
     export let href: string = '';
     export let active: boolean = false;
     export let activeClass: string | undefined = undefined;
     export let nonActiveClass: string | undefined = undefined;
+
+    export let data: string = '';
   
     const context = getContext<NavbarLiType>('navbar') ?? {};
   
@@ -16,6 +18,10 @@
       active ? activeClass ?? context.activeClass : nonActiveClass ?? context.nonActiveClass,
       $$props.class
     );
+
+    afterUpdate(() => {
+        console.log(`${data} updated, active: ${active}`);
+    });
 
 
   </script>

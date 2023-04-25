@@ -5,21 +5,19 @@
 	import NavLi from '../../lib/components/NavLi.svelte';
 	import Navbar from '../../lib/components/Navbar.svelte';
 	import MyComp from '$lib/components/MyComp.svelte';
-	let darkmodebtn =
-		'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-lg p-2.5 fixed right-4 top-2 z-50';
 </script>
 
-<Navbar let:hidden let:toggle>
-	<NavUl {hidden}>
-		<NavLi href="/" active={$page.route.id === '/(auth)'}>Home</NavLi>
-		<NavLi href="/about" active={$page.route.id === '/(auth)/about'}>About</NavLi>
+<Navbar>
+	<NavUl>
+		<NavLi data="home in navbar" href="/" active={$page.route.id === '/(auth)'}>Home {$page.route.id === '/(auth)'}</NavLi>
+		<NavLi data="about in navbar" href="/about" active={$page.route.id === '/(auth)/about'}>About {$page.route.id === '/(auth)/about'}</NavLi>
 	</NavUl>
 </Navbar>
 
 <MyComp>
 	<NavUl>
-		<NavLi href="/" active={$page.route.id === '/(auth)'}>home active: {$page.route.id === '/(auth)'}</NavLi>
-		<NavLi href="/about" active={$page.route.id === '/(auth)/about'}>about active: {$page.route.id === '/(auth)/about'}</NavLi>
+		<NavLi data="home in mycomp" href="/" active={$page.route.id === '/(auth)'}>home active: {$page.route.id === '/(auth)'}</NavLi>
+		<NavLi data="about in mycomp" href="/about" active={$page.route.id === '/(auth)/about'}>about active: {$page.route.id === '/(auth)/about'}</NavLi>
 	</NavUl>
 </MyComp>
 
